@@ -27,8 +27,17 @@ let login = () => {
 };
 
 let findOffers = (params) => {
+    let where = "";
+    if(params){
+        let parts = [];
+        let city = params['conversation-city'];
+        if(city) parts.push(`Cities__c includes ('${city}')` );
+        if(parts.length>0){
+            where = "WHERE " + parts.join(' AND ');
+        }
+    }
     return new Promise((resolve,reject) => {
-        let q = `SELECT Id, Name, dkom__Offer__c, dkom__Description__c, Cities__c, dkom__Image__c, dkom__Image_URL__c FROM dkom__Offer__c where Cities__c includes ('Cancun')`;
+        let q = `SELECT Id, Name, dkom__Offer__c, dkom__Description__c, Cities__c, dkom__Image__c, dkom__Image_URL__c FROM dkom__Offer__c ${where} LIMIT 1`;
         org.query({query: q}, (err,resp) => {
             if(err){
                 reject(err);
