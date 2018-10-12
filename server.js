@@ -16,9 +16,9 @@ app.post('/liveaqua', (req, res) => {
         intent = ga.intent,
         params = ga.params;
     console.log('Intent: ' + intent);
-    console.log('Params: ' + params);
+    console.log('Params: %j' + params);
     console.log('Session: ' + session);
-    
+
 });
 
 app.listen(app.get('port'), function() {
