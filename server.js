@@ -16,7 +16,7 @@ app.post('/liveaqua', (req, res) => {
         intent = ga.intent,
         params = ga.params;
     console.log('Intent: ' + intent);
-    console.log('Params: %j' + params);
+    console.log('Params: ' + JSON.stringify(params);
     console.log('Session: ' + session);
     let handler = handlers[intent];
     if(handler){
