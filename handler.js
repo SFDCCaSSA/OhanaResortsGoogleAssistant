@@ -11,7 +11,7 @@ exports.queryDeals = (params, session, response) => {
 	.then(offers => {
 		console.log('Offers: ' + JSON.stringify(offers));
 		let offer = offers[0];
-		console.log(offer);
+		console.log(JSON.stringify(offer));
 		let offerName = offer["name"];
 		console.log(offerName);
 		response.send(JSON.stringify({
