@@ -10,10 +10,12 @@ exports.queryDeals = (params, session, response) => {
 	salesforce.findOffers(params)
 	.then(offers => {
 		console.log('Offers: ' + JSON.stringify(offers));
-		let offerName = offers[0].name;
+		let offer = offers[0];
+		console.log(offer);
+		let offerName = offer["name"];
 		console.log(offerName);
 		response.send(JSON.stringify({
-			'fulfillmentText' : 'Encontré una oferta en ' + city + ' que te puede interesar: ' + offers[0].name
+			'fulfillmentText' : 'Encontré una oferta en ' + city + ' que te puede interesar: ' + offerName
 		}));
 	})
 	.catch((err)=>{
