@@ -11,7 +11,7 @@ exports.queryDeals = (params, session, response) => {
 	.then(offers => {
 		console.log('Offers: ' + JSON.stringify(offers));
 		response.send(JSON.stringify({
-			'fulfillmentText' : 'Encontré una oferta en ' + city + ' que te puede interesar: ' + offers.Name
+			'fulfillmentText' : 'Encontré una oferta en ' + city + ' que te puede interesar: ' + offers["name"]
 		}));
 	})
 	.catch((err)=>{
