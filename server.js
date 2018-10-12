@@ -23,8 +23,7 @@ app.post('/liveaqua', (req, res) => {
     if(handler){
         handler(params, session, res);
         res.send(JSON.stringify({
-            "speech" : "hola",
-            "text" : "hola"
+            "fulfillmentText" : "hola"
         }));
     }
 });
