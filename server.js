@@ -11,7 +11,7 @@ app.use(bodyParser.json());
 
 app.post('/liveaqua', (req, res) => {
     console.log(req.body);
-    console.log('Response: ' + JSON.stringify(res));
+    console.log('Response: ' + res);
     let ga = googleAsst(req,res),
         session = ga.session,
         intent = ga.intent,
