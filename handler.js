@@ -10,6 +10,9 @@ exports.queryDeals = (params, session, response) => {
 	salesforce.findOffers(params)
 	.then(offers => {
 		console.log('Offers: ' + JSON.stringify(offers));
+		response.send(JSON.stringify({
+			'fulfillmentText' : 'Encontré una oferta en ' + city + ' que te puede interesar: ' + offers.Name
+		}));
 	})
 	.catch((err)=>{
 		console.error(err);
