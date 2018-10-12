@@ -26,6 +26,20 @@ let login = () => {
     });
 };
 
+let findOffers = (params) => {
+    return new Promise((resolve,reject) => {
+        let q = `SELECT Id, Name, dkom__Offer__c, dkom__Description__c, Cities__c, dkom__Image__c, dkom__Image_URL__c FROM dkom__Offer__c where Cities__c includes ('Cancun')`;
+        org.query({query: q}, (err,resp) => {
+            if(err){
+                reject(err);
+            }
+            else{
+                resolve(resp.records);
+            }
+        });
+    });
+};
+
 let findTours = (params) => {
     console.log('City: ' + params.city);
     let where = "";
@@ -103,6 +117,7 @@ let createServiceRequest = (slot) => {
 login();
 
 exports.org = org;
+exports.findOffers = findOffers;
 exports.findTours = findTours;
 exports.makeReservation = makeReservation;
 exports.createServiceRequest = createServiceRequest;
