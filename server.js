@@ -18,7 +18,10 @@ app.post('/liveaqua', (req, res) => {
     console.log('Intent: ' + intent);
     console.log('Params: %j' + params);
     console.log('Session: ' + session);
-
+    let handler = handlers[intent];
+    if(handler){
+        handler(params, session, res);
+    }
 });
 
 app.listen(app.get('port'), function() {
