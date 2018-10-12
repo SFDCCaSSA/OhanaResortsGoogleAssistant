@@ -12,7 +12,7 @@ exports.queryDeals = (params, session, response) => {
 		console.log('Offers: ' + JSON.stringify(offers));
 		let offer = offers[0];
 		console.log(JSON.stringify(offer));
-		let offerName = offer["name"];
+		let offerName = offer.name;
 		console.log(offerName);
 		response.send(JSON.stringify({
 			'fulfillmentText' : 'Encontré una oferta en ' + city + ' que te puede interesar: ' + offerName
