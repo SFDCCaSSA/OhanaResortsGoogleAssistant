@@ -9,7 +9,7 @@ app.set('port', (process.env.PORT || 5000));
 app.use(bodyParser.json());
 
 app.post('/liveaqua', (req, res) => {
-    console.log(req);
+    console.log(req.body);
 
 
 });
