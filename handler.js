@@ -1,6 +1,6 @@
 "use strict";
 
-let salesforce = require("/.salesforce");
+let salesforce = require("./salesforce");
 
 exports.queryDeals = (params, session, response) => {
 	console.log('Entered queryDeals');
