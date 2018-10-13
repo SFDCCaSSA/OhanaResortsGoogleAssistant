@@ -25,3 +25,9 @@ exports.queryDeals = (params, session, response) => {
 		console.error(err);
 	});
 }
+
+exports.comfirmReservation = (params, session, response) => {
+	console.log('Entered comfirmReservation');
+	console.log('Params: ' + JSON.stringify(params));
+	response.say('Reservación confirmada!');
+}
