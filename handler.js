@@ -25,7 +25,7 @@ exports.queryDeals = (params, session, response) => {
 		let offer = offers[0];
 		console.log(JSON.stringify(offer));
 		let offerName = offer.get('name');
-		let desc = escape(offer.get('dkom__description__c'));
+		let desc = escape(offer.get('description_plain__c'));
 		property = offer.get('Property__c');
 		console.log(offerName);
 		response.say('Encontré una oferta en ' + city + ' que te puede interesar: ' + offerName + '. ' + desc + '. ¿Te gustaría reservar?');

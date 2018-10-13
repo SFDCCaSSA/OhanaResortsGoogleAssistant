@@ -37,7 +37,7 @@ let findOffers = (params) => {
         }
     }
     return new Promise((resolve,reject) => {
-        let q = `SELECT Id, Name, dkom__Offer__c, dkom__Description__c, Cities__c, dkom__Image__c, dkom__Image_URL__c, Property__c FROM dkom__Offer__c ${where} LIMIT 1`;
+        let q = `SELECT Id, Name, dkom__Offer__c, dkom__Description__c, Cities__c, dkom__Image__c, dkom__Image_URL__c, Property__c, Description_Plain__c FROM dkom__Offer__c ${where} LIMIT 1`;
         org.query({query: q}, (err,resp) => {
             if(err){
                 reject(err);
@@ -51,22 +51,25 @@ let findOffers = (params) => {
 
 let makeReservation = (property, adults, children, checkIn, checkOut, paxName) => {
     console.log('Make Rez -> Property: ' + property);
-    let rez = nforce.createSObject('Reservation__c');
-    rez.set('Guest__c', '001f400000bv24QAAQ');
-    rez.set('Property__c', property);
-    rez.set('No_adults__c', adults);
-    rez.set('No_children__c', children);
-    rez.set('Check_in_date__c', checkIn);
-    rez.set('Check_out_date__c', checkOut);
-    org.insert({sobject: rez}, err => {
-        if (err) {
-            console.error(err);
-            reject("Ocurrió un error al crear la reserva.");
-        } else {
-            resolve(rez);
-        }
+    return new Promise((resolve, reject) => {
+        let rez = nforce.createSObject('Reservation__c');
+        rez.set('Guest__c', '001f400000bv24QAAQ');
+        rez.set('Property__c', property);
+        rez.set('No_adults__c', adults);
+        rez.set('No_children__c', children);
+        rez.set('Check_in_date__c', checkIn);
+        rez.set('Check_out_date__c', checkOut);
+        org.insert({sobject: rez}, err => {
+            if (err) {
+                console.error(err);
+                reject("Ocurrió un error al crear la reserva.");
+            } else {
+                resolve(rez);
+            }
+        });
     });
-}
+    
+};
 
 let findTours = (params) => {
     console.log('City: ' + params.city);
