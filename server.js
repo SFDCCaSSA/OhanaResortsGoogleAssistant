@@ -21,7 +21,6 @@ app.post('/liveaqua', (req, res) => {
     console.log('Intent: ' + intent);
     console.log('Params: ' + JSON.stringify(params));
     console.log('Session: ' + session);
-    console.log('Contexts: ' + JSON.stringify(contexts));
     let handler = handlers[intent];
     if(handler){
         handler(params, session, response);
