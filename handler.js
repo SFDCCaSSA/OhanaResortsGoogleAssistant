@@ -28,7 +28,7 @@ exports.queryDeals = (params, session, response) => {
 		let desc = escape(offer.get('description_plain__c'));
 		property = offer.get('Property__c');
 		console.log(offerName);
-		response.say('Encontré una oferta en ' + city + ' que te puede interesar: ' + offerName + '. ' + desc + '. ¿Te gustaría reservar?');
+		response.say('Encontré una oferta en ' + city + ' que te puede interesar: ' + offerName  + desc + '. ¿Te gustaría reservar?');
 		/*response.send(JSON.stringify({
 			'fulfillmentText' : 'Encontré una oferta en ' + city + ' que te puede interesar: ' + offerName + '. ' + desc + '. ¿Te gustaría reservar?'
 		}));*/
@@ -44,7 +44,7 @@ exports.comfirmReservation = (params, session, response) => {
 	salesforce.makeReservation(property, adults, children, checkIn, checkOut, paxName)
 	.then(rez => {
 		console.log('Reservación generada exitosamente');
-		response.say('Reservación confirmada!');
+		response.say('Reservación confirmada para ' + adults + ' adultos y ' + children + ' niños a nombre de ' + paxName + ' llegando el ' + checkIn + ' y saliendo el ' + checkOut '. ' );
 	})
 	.catch((err)=>{
 		console.error(err);
