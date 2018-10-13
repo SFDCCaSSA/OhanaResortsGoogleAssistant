@@ -44,7 +44,7 @@ exports.comfirmReservation = (params, session, response) => {
 	salesforce.makeReservation(property, adults, children, checkIn, checkOut, paxName)
 	.then(rez => {
 		console.log('Reservación generada exitosamente');
-		response.say('Reservación confirmada para ' + adults + ' adultos y ' + children + ' niños a nombre de ' + paxName + ' llegando el ' + checkIn + ' y saliendo el ' + checkOut '. ' );
+		response.say('Reservación confirmada para ' + adults + ' adultos y ' + children + ' niños a nombre de ' + paxName + ' llegando el ' + checkIn + ' y saliendo el ' + checkOut + '. ' );
 	})
 	.catch((err)=>{
 		console.error(err);
