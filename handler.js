@@ -2,11 +2,13 @@
 
 let salesforce = require("./salesforce");
 let escape = require("html-escape");
+let adults;
 
 exports.queryDeals = (params, session, response) => {
 	console.log('Entered queryDeals');
 	console.log('Params: ' + JSON.stringify(params));
 	let city = params['conversation-city'];
+	adults = params['adults'];
 	console.log('City: '  + city);
 	salesforce.findOffers(params)
 	.then(offers => {
@@ -28,6 +30,6 @@ exports.queryDeals = (params, session, response) => {
 
 exports.comfirmReservation = (params, session, response) => {
 	console.log('Entered comfirmReservation');
-	console.log('Params: ' + JSON.stringify(params));
+	console.log('Adults: ' + adults);
 	response.say('Reservación confirmada!');
 }
