@@ -41,6 +41,14 @@ exports.queryDeals = (params, session, response) => {
 exports.comfirmReservation = (params, session, response) => {
 	console.log('Entered comfirmReservation');
 	console.log('Adults: ' + adults);
-	salesforce.makeReservation(property, adults, children, checkIn, checkOut, paxName);
-	response.say('Reservación confirmada!');
+	salesforce.makeReservation(property, adults, children, checkIn, checkOut, paxName)
+	.then(rez => {
+		console.log('Reservación generada exitosamente');
+		response.say('Reservación confirmada!');
+	})
+	.catch((err)=>{
+		console.error(err);
+		response.say('Ocurrió un error al completar tu reserva. Por favor intenta nuevamente.');
+	});
+	
 }

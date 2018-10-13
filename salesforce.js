@@ -51,6 +51,21 @@ let findOffers = (params) => {
 
 let makeReservation = (property, adults, children, checkIn, checkOut, paxName) => {
     console.log('Make Rez -> Property: ' + property);
+    let rez = nforce.createSObject('Reservation__c');
+    rez.set('Guest__c', '001f400000bv24QAAQ');
+    rez.set('Property__c', property);
+    rez.set('No_adults__c', adults);
+    rez.set('No_children__c', children);
+    rez.set('Check_in_date__c', checkIn);
+    rez.set('Check_out_date__c', checkOut);
+    org.insert({sobject: rez}, err => {
+        if (err) {
+            console.error(err);
+            reject("Ocurrió un error al crear la reserva.");
+        } else {
+            resolve(rez);
+        }
+    });
 }
 
 let findTours = (params) => {
