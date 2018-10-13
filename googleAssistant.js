@@ -11,11 +11,21 @@ module.exports = (req, res) => {
 			intent = req.body.queryResult.intent.displayName;
 		}
 	}
+
+	let say = (text) => {
+		res.json({
+			'fulfillmentText': text
+		});
+	}
 	
 	return {
 		session: session,
 		intent: intent,
-		params: params
+		params: params,
+
+		response : {
+			say: text => say(text)
+		}
 	};
 
 };

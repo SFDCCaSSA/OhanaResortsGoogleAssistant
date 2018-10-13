@@ -15,13 +15,14 @@ app.post('/liveaqua', (req, res) => {
     let ga = googleAsst(req,res),
         session = ga.session,
         intent = ga.intent,
-        params = ga.params;
+        params = ga.params,
+        response = ga.response;
     console.log('Intent: ' + intent);
     console.log('Params: ' + JSON.stringify(params));
     console.log('Session: ' + session);
     let handler = handlers[intent];
     if(handler){
-        handler(params, session, res);
+        handler(params, session, response);
         
     }
 });

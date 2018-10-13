@@ -16,9 +16,10 @@ exports.queryDeals = (params, session, response) => {
 		let offerName = offer.get('name');
 		let desc = escape(offer.get('dkom__description__c'));
 		console.log(offerName);
-		response.send(JSON.stringify({
+		response.say('Encontré una oferta en ' + city + ' que te puede interesar: ' + offerName + '. ' + desc + '. ¿Te gustaría reservar?');
+		/*response.send(JSON.stringify({
 			'fulfillmentText' : 'Encontré una oferta en ' + city + ' que te puede interesar: ' + offerName + '. ' + desc + '. ¿Te gustaría reservar?'
-		}));
+		}));*/
 	})
 	.catch((err)=>{
 		console.error(err);
