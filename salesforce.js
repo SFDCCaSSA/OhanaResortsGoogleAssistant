@@ -37,7 +37,7 @@ let findOffers = (params) => {
         }
     }
     return new Promise((resolve,reject) => {
-        let q = `SELECT Id, Name, dkom__Offer__c, dkom__Description__c, Cities__c, dkom__Image__c, dkom__Image_URL__c FROM dkom__Offer__c ${where} LIMIT 1`;
+        let q = `SELECT Id, Name, dkom__Offer__c, dkom__Description__c, Cities__c, dkom__Image__c, dkom__Image_URL__c, Property__c FROM dkom__Offer__c ${where} LIMIT 1`;
         org.query({query: q}, (err,resp) => {
             if(err){
                 reject(err);
@@ -48,6 +48,10 @@ let findOffers = (params) => {
         });
     });
 };
+
+let makeReservation = (property, adults, children, checkIn, checkOut, paxName) => {
+    console.log('Make Rez -> Property: ' + property);
+}
 
 let findTours = (params) => {
     console.log('City: ' + params.city);
@@ -75,7 +79,7 @@ let findTours = (params) => {
     });
 };
 
-let makeReservation = (session) => {
+/*let makeReservation = (session) => {
     console.log('Session ' + session.attributes.selectedTour.id);
     return new Promise((resolve, reject) => {
         let rez = nforce.createSObject('Tour_Reservation__c');
@@ -97,7 +101,7 @@ let makeReservation = (session) => {
             }
         });
     });
-};
+};*/
 
 let createServiceRequest = (slot) => {
     return new Promise((resolve, reject) => {

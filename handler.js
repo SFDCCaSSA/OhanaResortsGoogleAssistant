@@ -3,12 +3,21 @@
 let salesforce = require("./salesforce");
 let escape = require("html-escape");
 let adults;
+let children;
+let checkIn;
+let checkOut;
+let paxName;
+let property;
 
 exports.queryDeals = (params, session, response) => {
 	console.log('Entered queryDeals');
 	console.log('Params: ' + JSON.stringify(params));
 	let city = params['conversation-city'];
 	adults = params['adults'];
+	children = params['children'];
+	checkIn = params['checkIn'];
+	checkOut = params['checkOut'];
+	paxName = params['paxName'];
 	console.log('City: '  + city);
 	salesforce.findOffers(params)
 	.then(offers => {
@@ -17,6 +26,7 @@ exports.queryDeals = (params, session, response) => {
 		console.log(JSON.stringify(offer));
 		let offerName = offer.get('name');
 		let desc = escape(offer.get('dkom__description__c'));
+		property = offer.get('Property__c');
 		console.log(offerName);
 		response.say('Encontré una oferta en ' + city + ' que te puede interesar: ' + offerName + '. ' + desc + '. ¿Te gustaría reservar?');
 		/*response.send(JSON.stringify({
@@ -31,5 +41,6 @@ exports.queryDeals = (params, session, response) => {
 exports.comfirmReservation = (params, session, response) => {
 	console.log('Entered comfirmReservation');
 	console.log('Adults: ' + adults);
+	salesforce.makeReservation(property, adults, children, checkIn, checkOut, paxName);
 	response.say('Reservación confirmada!');
 }
