@@ -128,7 +128,7 @@ let createServiceRequest = (toiletry, room) => {
         c.set('Status', 'New');
         c.set('Priority', 'Medium');
         c.set('Origin', 'Google Assistant');
-        c.set('Subject', 'Se solicita ' + toiletry);
+        c.set('Subject', 'Solicitud de ' + toiletry + ' adicional(es)');
         c.set('Type', 'Room Support');
         c.set('Description', 'Favor de llevar más ' + toiletry + ' a la habitación ' + room);
         org.insert({sobject: c}, err => {
