@@ -124,7 +124,6 @@ let findTours = (params) => {
 let createServiceRequest = (toiletry, room) => {
     return new Promise((resolve, reject) => {
         let c = nforce.createSObject('Case');
-        console.log('Request: ' + slot);
         c.set('AccountId', '001f400000bv24QAAQ');
         c.set('Status', 'New');
         c.set('Priority', 'Medium');
