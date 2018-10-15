@@ -36,7 +36,7 @@ exports.queryDeals = (params, session, response) => {
 	.catch((err)=>{
 		console.error(err);
 	});
-}
+};
 
 exports.comfirmReservation = (params, session, response) => {
 	console.log('Entered comfirmReservation');
@@ -51,4 +51,20 @@ exports.comfirmReservation = (params, session, response) => {
 		response.say('Ocurrió un error al completar tu reserva. Por favor intenta nuevamente.');
 	});
 	
-}
+};
+
+exports.requestService = (params, session, response) => {
+	console.log('Entered requestService');
+	let room = params['room'];
+	let toiletry = params['toiletries'];
+	console.log('Requested ' + toiletry + ' for room ' + room);
+	salesforce.createServiceRequest(toiletry, room)
+	.then(rez => {
+		console.log('Caso generado exitosamente');
+		response.say('¡Listo! El ama de llaves está en camino a la habitación ' + room + ' con más ' + toiletry);
+	})
+	.catch((err)=> {
+		console.error(err);
+		response.say('Ocurrió un error al generar tu solicitud. Por favor intenta nuevamente.');
+	});
+};

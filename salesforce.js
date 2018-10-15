@@ -121,17 +121,17 @@ let findTours = (params) => {
     });
 };*/
 
-let createServiceRequest = (slot) => {
+let createServiceRequest = (toiletry, room) => {
     return new Promise((resolve, reject) => {
         let c = nforce.createSObject('Case');
         console.log('Request: ' + slot);
-        c.set('AccountId', '0011N00001DBLiPQAX');
+        c.set('AccountId', '001f400000bv24QAAQ');
         c.set('Status', 'New');
         c.set('Priority', 'Medium');
-        c.set('Origin', 'Alexa');
-        c.set('Subject', 'More Towels');
+        c.set('Origin', 'Google Assistant');
+        c.set('Subject', 'Se solicita ' + toiletry);
         c.set('Type', 'Room Support');
-        c.set('Description', 'Alexa ask Royal Resorts for more towels');
+        c.set('Description', 'Favor de llevar más ' + toiletry + ' a la habitación ' + room);
         org.insert({sobject: c}, err => {
             if(err){
                 console.error(err);
